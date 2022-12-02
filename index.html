@@ -9,6 +9,15 @@
             font-family: sans-serif;
            
         }
+/*does it fix whole page gradient?*/
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
         p {
             font-size: 0.7rem; /* smaller than 1 DOESNT WORK??? or too big in phone? */
         }
@@ -43,7 +52,7 @@
         }
         #trainer {
             position: fixed;
-            bottom: 350;
+            bottom: 330;
             right: 90;
 
             opacity: 0.4;
@@ -72,12 +81,38 @@
             position:absolute;
             z-index: -1;
             top: 0;
-  right: 0;
-  min-width: 100%; 
-  min-height: 100%; 
-  overflow: hidden;
+            right: 0;
+            min-width: 100%; 
+            min-height: 100%; 
+            overflow: hidden;
         }
-      
+        #height::first-letter {
+            text-transform: capitalize;
+        }
+        .r10 {
+          color: rgb(255, 217, 0);
+        }
+        .r45 {
+          color:rgb(138, 0, 138);
+        }
+        .r130 {
+          color:rgb(0, 60, 255)
+        }
+        .r255 {
+          color:rgb(255, 255, 255)
+        }
+        .r10::after {
+          content: ' ★';
+        }
+        .r45::after {
+          content: ' ♦ ';
+        }
+        .r130::after {
+          content: ' ■ '; /*■ or ▲*/
+        }
+        .r255::after {
+          content: ' ●';
+        }
        </style>
        <style>
         body {
@@ -108,7 +143,7 @@
         .overlay a {
           padding: 4px;
           text-decoration: none;
-          font-size: 3.2vh;
+          font-size: 3.0vh;
           color: #818181;
           display: block;
           transition: 0.3s;
@@ -184,6 +219,7 @@
     </div>
     <p id="abilities"></p>
     <p id="dexentry"></p>
+    <p id="origin"></p>
 
     <!-- <script src="serebiiURL.json"></script>
     <script src="paldeaDEX.json"></script> -->

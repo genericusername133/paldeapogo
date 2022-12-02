@@ -3015,12 +3015,32 @@ pokemon.stats = pokemon.stats.replace('\n','<br>DEF ')
 pokemon.stats = pokemon.stats.replace('\n','<br>SPA ')
 pokemon.stats = pokemon.stats.replace('\n','<br>SPD ')
 pokemon.stats = pokemon.stats.replace('\n','<br>SPE ')
-document.getElementById('height').innerHTML = '<b>'+pokemon.type.toString().replace(',',' ').replace('Unknown','')+'</b><br>'+pokemon.stats//.replaceAll('\n','<br>')
+
+let rarity;
+if(pokemon.catchrate <= 130){
+    rarity = 'r130' 
+    if(pokemon.catchrate <= 45){
+        rarity = 'r45' 
+        if(pokemon.catchrate <= 10){
+            rarity = 'r10' 
+        }
+    }
+}else{
+    rarity = 'r255' 
+}
+for(let[key,val] of Object.entries(pokemon.evolution)){
+    if(val == pokemon.name.toLowerCase()){
+        document.getElementById('height').innerHTML = '<b>'+key+'</b><b class='+rarity+'> </b><br><br>'
+    }
+}
+
+document.getElementById('height').innerHTML += '<b>'+pokemon.type.toString().replace(',',' ').replace('Unknown','')+'</b><br>'+pokemon.stats//.replaceAll('\n','<br>')
 
 pokemon.dexentry = pokemon.dexentry.replace('Flavor Text','')
 pokemon.dexentry = pokemon.dexentry.replace('\n\t\n\t\tScarlet\n\t\t','')
 document.getElementById('dexentry').innerHTML = pokemon.dexentry.replace('\n\t\n\t\tViolet\n\t\t','<br><br>')
 
+document.getElementById('origin').innerHTML = '<br>'+pokemon.origin
 
 // select ability names /\\n[\w ]+:/g
 // select ability effect /:[^:]+\n/g
@@ -3068,6 +3088,8 @@ document.querySelectorAll('.overlay-content a').forEach(el => {
         pokemon=yates_pokemon(el.textContent);
         createPage(pokemon); 
         console.log('event fired', el.textContent);
+
+        closeNav()
     });
 })
 
@@ -3097,7 +3119,26 @@ function createPage(pokemon){
     pokemon.stats = pokemon.stats.replace('\n','<br>SPA ')
     pokemon.stats = pokemon.stats.replace('\n','<br>SPD ')
     pokemon.stats = pokemon.stats.replace('\n','<br>SPE ')
-    document.getElementById('height').innerHTML = '<b>'+pokemon.type.toString().replace(',',' ').replace('Unknown','')+'</b><br>'+pokemon.stats//.replaceAll('\n','<br>')
+    
+    let rarity;
+    if(pokemon.catchrate <= 130){
+        rarity = 'r130' 
+        if(pokemon.catchrate <= 45){
+            rarity = 'r45' 
+            if(pokemon.catchrate <= 10){
+                rarity = 'r10' 
+            }
+        }
+    }else{
+        rarity = 'r255' 
+    }
+    for(let[key,val] of Object.entries(pokemon.evolution)){
+        if(val == pokemon.name.toLowerCase()){
+            document.getElementById('height').innerHTML = '<b>'+key+'</b><b class='+rarity+'> </b><br><br>'
+        }
+    }
+    
+    document.getElementById('height').innerHTML += '<b>'+pokemon.type.toString().replace(',',' ').replace('Unknown','')+'</b><br>'+pokemon.stats//.replaceAll('\n','<br>')
 
     pokemon.dexentry = pokemon.dexentry.replace('Flavor Text','')
     pokemon.dexentry = pokemon.dexentry.replace('\n\t\n\t\tScarlet\n\t\t','')
