@@ -2990,10 +2990,11 @@ console.log(pokemon)
         return typesByName[type][0] // return yates pick, if catch fails
     }
     console.log('yates',yates_pokemon('Grass'))
+    
 
 
-document.getElementById('name').innerHTML = pokemon.name
-document.getElementById('classification').innerHTML = '&#127818;<b>'+pokemon.classification.replace(' Pokémon','')+'</b>'
+    document.getElementById('name').innerHTML = pokemon.name
+document.getElementById('classification').innerHTML = '&#127818;<b>'+pokemon.classification.replace(' Pokémon','')+'</b> <span id="menu" style="font-size:30px;cursor:pointer;right: 5;top: 0;position: fixed;" onclick="openNav()">&#9776;</span>'
 // violet 127815, scarlet 127818
 // max image height 250
 document.getElementById('image').src = pokemon.image
@@ -3062,12 +3063,87 @@ function getColor2() {
 
 document.body.style.backgroundImage = 'linear-gradient('+typecolors[pokemon.type[0]]+','+color2+')';
 
+document.querySelectorAll('.overlay-content a').forEach(el => {
+    el.addEventListener("click",function() { 
+        pokemon=yates_pokemon(el.textContent);
+        createPage(pokemon); 
+        console.log('event fired', el.textContent);
+    });
+})
 
-
-for(let[i, color] of Object.entries(typecolors)){
-    //style(color)
-}
-function style(color){
-    setTimeout(function(){ document.body.style.backgroundImage = "linear-gradient("+color.toLowerCase()+", white)"; console.log(color)}, 1000);
-}
 });
+
+function createPage(pokemon){
+        
+    document.getElementById('name').innerHTML = pokemon.name
+    document.getElementById('classification').innerHTML = '&#127818;<b>'+pokemon.classification.replace(' Pokémon','')+'</b> <span id="menu" style="font-size:30px;cursor:pointer;right: 5;top: 0;position: fixed;" onclick="openNav()">&#9776;</span>'
+    // violet 127815, scarlet 127818
+    // max image height 250
+    document.getElementById('image').src = pokemon.image
+
+
+    let height = 160 * 1.7/parseFloat(pokemon.height);
+    if(height>600){
+        // if height really small like 0.5m then scale image smaller
+        document.getElementById('image').style.height = 250 * 600/height;
+        height=600;
+    }
+    document.getElementById('trainer').style.height = height;
+
+    pokemon.stats = pokemon.stats.replace('Base Stats - Total:','<br>BST')
+    pokemon.stats = pokemon.stats.replace('\n','<br>HP&nbsp ')
+    pokemon.stats = pokemon.stats.replace('\n','<br>ATK ')
+    pokemon.stats = pokemon.stats.replace('\n','<br>DEF ')
+    pokemon.stats = pokemon.stats.replace('\n','<br>SPA ')
+    pokemon.stats = pokemon.stats.replace('\n','<br>SPD ')
+    pokemon.stats = pokemon.stats.replace('\n','<br>SPE ')
+    document.getElementById('height').innerHTML = '<b>'+pokemon.type.toString().replace(',',' ').replace('Unknown','')+'</b><br>'+pokemon.stats//.replaceAll('\n','<br>')
+
+    pokemon.dexentry = pokemon.dexentry.replace('Flavor Text','')
+    pokemon.dexentry = pokemon.dexentry.replace('\n\t\n\t\tScarlet\n\t\t','')
+    document.getElementById('dexentry').innerHTML = pokemon.dexentry.replace('\n\t\n\t\tViolet\n\t\t','<br><br>')
+
+
+    // select ability names /\\n[\w ]+:/g
+    // select ability effect /:[^:]+\n/g
+
+    // ability parsing
+    let text2 = pokemon.abilities.replaceAll('Hidden Ability: ','')
+    text2 = text2.replaceAll(": ",'<div class="ability">') // start
+    text2 = text2.replaceAll(" \n\t\t",'</div><br>') // end
+    text2 = text2.replaceAll(" \n",'</div>') // middle, this order matters cus above also uses \n
+    document.getElementById('abilities').innerHTML = text2
+
+    let typecolors = {
+        Normal: 'Wheat',
+        Fire: 'Red',
+        Water: 'Blue',
+        Grass: 'Green',
+        Electric: 'Yellow',
+        Ice: 'PaleTurquoise',
+        Fighting: 'Brown',
+        Poison: 'DarkViolet',
+        Ground: 'Orange',
+        Flying: 'LightCyan',
+        Psychic: 'MediumOrchid',
+        Bug: 'Olive',
+        Rock: 'Tan',
+        Ghost: 'DarkSlateBlue',
+        Dark: 'MidnightBlue',
+        Dragon: 'Navy',
+        Steel: 'LightSlateGrey',
+        Fairy: 'LightPink',
+    }
+    let color2 = getColor2();
+    function getColor2() {
+        if(pokemon.type[1] == 'Unknown'){ 
+            return typecolors[pokemon.type[0]] 
+        }else{ 
+            return typecolors[pokemon.type[1]]
+        }
+    }
+
+    document.body.style.backgroundImage = 'linear-gradient('+typecolors[pokemon.type[0]]+','+color2+')';
+
+
+}

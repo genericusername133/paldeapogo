@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
        <style>
         html {
             text-size-adjust: 100%; /* Prevent font scaling in landscape while allowing user zoom */
@@ -62,7 +62,7 @@
         }
         body{
             background-image: url("backgrounds/bg-mountain.png");
-            background-image: linear-gradient(brown, orange);
+            background-image: linear-gradient(black, black);
 
             background-size: cover;
         }
@@ -78,10 +78,94 @@
         }
       
        </style>
+       <style>
+        body {
+          font-family: 'Lato', sans-serif;
+        }
+        
+        .overlay {
+          height: 100%;
+          width: 0;
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          background-color: rgb(0,0,0);
+          background-color: rgba(0,0,0, 0.97);
+          overflow-x: hidden;
+          transition: 0.5s;
+        }
+        
+        .overlay-content {
+          position: relative;
+          top: 0%;
+          width: 100%;
+          text-align: center;
+          margin-top: 30px;
+        }
+        
+        .overlay a {
+          padding: 4px;
+          text-decoration: none;
+          font-size: 1.3rem;
+          color: #818181;
+          display: block;
+          transition: 0.3s;
+        }
+        
+        .overlay a:hover, .overlay a:focus {
+          color: #f1f1f1;
+        }
+        
+        .overlay .closebtn {
+          position: absolute;
+          top: 20px;
+          right: 45px;
+          font-size: 60px;
+        }
+        
+        @media screen and (max-height: 450px) {
+          .overlay a {font-size: 20px}
+          .overlay .closebtn {
+          font-size: 40px;
+          top: 15px;
+          right: 35px;
+          }
+        }
+        </style>
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     </head>
 <body>
+    
+    <div id="myNav" class="overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="top: -20; right: 0;">&times;</a>
+        <div class="overlay-content">
+          <a href="#" id="Grass">Grass</a>
+          <a href="#" id="Fire">Fire</a>
+          <a href="#" id="Water">Water</a>
+          <a href="#" id="">Normal</a>
+          <a href="#" id="">Flying</a>
+          <a href="#" id="">Bug</a>
+          <a href="#" id="">Poison</a>
+          <a href="#" id="">Ground</a>
+          <a href="#" id="">Rock</a>
+          <a href="#" id="">Ice</a>
+          <a href="#" id="">Electric</a>
+          <a href="#" id="">Steel</a>
+          <a href="#" id="">Ghost</a>
+          <a href="#" id="">Dark</a>
+          <a href="#" id="">Psychic</a>
+          <a href="#" id="">Fighting</a>
+          <a href="#" id="">Fairy</a>
+          <a href="#" id="">Dragon</a>
+        </div>
+      </div>
+
+
+       
+    
+
     <video class="video" autoplay loop>
         <source src="backgrounds/weather-gen6-hail.mp4" type="video/mp">
     </video>
@@ -111,6 +195,16 @@
         }
         window.addEventListener('resize', documentHeight)
         documentHeight()
+    </script>
+
+<script>
+    function openNav() {
+      document.getElementById("myNav").style.width = "100%";
+    }
+    
+    function closeNav() {
+      document.getElementById("myNav").style.width = "0%";
+    }
     </script>
 </body>
 </html>
