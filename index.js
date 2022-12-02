@@ -3093,6 +3093,14 @@ document.querySelectorAll('.overlay-content a').forEach(el => {
     });
 })
 
+document.querySelector('#image').addEventListener("click",function() { 
+    if(document.getElementById('image').src == pokemon.image){
+        document.getElementById('image').src = pokemon.bulbaIMG
+    }else{
+        document.getElementById('image').src = pokemon.image
+    }
+});
+
 });
 
 function createPage(pokemon){
