@@ -3104,7 +3104,6 @@ document.querySelector('#image').addEventListener("click",function() {
 });
 
 function createPage(pokemon){
-        
     document.getElementById('name').innerHTML = pokemon.name
     document.getElementById('classification').innerHTML = '<b>'+pokemon.classification.replace(' Pokémon','')+'</b> <span id="menu" style="font-size:30px;cursor:pointer;right: 5;top: 0;position: fixed;" onclick="openNav()">&#9776;</span>'
     // violet 127815, scarlet 127818
@@ -3127,7 +3126,7 @@ function createPage(pokemon){
     pokemon.stats = pokemon.stats.replace('\n','<br>SPA ')
     pokemon.stats = pokemon.stats.replace('\n','<br>SPD ')
     pokemon.stats = pokemon.stats.replace('\n','<br>SPE ')
-    
+
     let rarity;
     if(pokemon.catchrate <= 130){
         rarity = 'r130' 
@@ -3145,13 +3144,14 @@ function createPage(pokemon){
             document.getElementById('height').innerHTML = '<b>'+key+'</b><b class='+rarity+'> </b><br><br>'
         }
     }
-    
+
     document.getElementById('height').innerHTML += '<b>'+pokemon.type.toString().replace(',',' ').replace('Unknown','')+'</b><br>'+pokemon.stats//.replaceAll('\n','<br>')
 
     pokemon.dexentry = pokemon.dexentry.replace('Flavor Text','')
     pokemon.dexentry = pokemon.dexentry.replace('\n\t\n\t\tScarlet\n\t\t','')
     document.getElementById('dexentry').innerHTML = pokemon.dexentry.replace('\n\t\n\t\tViolet\n\t\t','<br><br>')
 
+    document.getElementById('origin').innerHTML = '<br>'+pokemon.origin
 
     // select ability names /\\n[\w ]+:/g
     // select ability effect /:[^:]+\n/g
