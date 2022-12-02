@@ -2994,7 +2994,7 @@ console.log(pokemon)
 
 
     document.getElementById('name').innerHTML = pokemon.name
-    document.getElementById('classification').innerHTML = '<b>'+pokemon.classification.replace(' Pokémon','')+'</b> <span id="menu" style="font-size:30px;cursor:pointer;right: 5;top: 0;position: fixed;" onclick="openNav()">&#9776;|</span>'
+    document.getElementById('classification').innerHTML = '<b>'+pokemon.classification.replace(' Pokémon','')+'</b> <span id="menu" style="font-size:30px;cursor:pointer;right: 5;top: 0;position: fixed;" onclick="openNav()">&#9776;</span>'
 // violet 127815, scarlet 127818
 // max image height 250
 document.getElementById('image').src = pokemon.image
