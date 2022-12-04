@@ -65,11 +65,15 @@ body {
         p, h2, h3 {
             margin: 0;
         }
+        br {
+          line-height: 1.3vh;
+        }
         .ability {
             padding-left: 1rem;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
+            padding-top: 0.2rem;
+            padding-bottom: 0.3rem;
         }
+       
         body{
             background-image: url("backgrounds/bg-mountain.png");
             background-image: linear-gradient(black, black);
@@ -113,6 +117,33 @@ body {
         .r255::after {
           content: ' ●';
         }
+        body{
+    position:fixed;
+    overflow:hidden;
+}
+        .container-center {
+          margin-top: -5vh;
+
+          width: 100%;
+          height: 50vh;
+          max-height: 50vh;
+          overflow: scroll;
+          /* center a div insie another div*/
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+        }
+        .container-center p{
+            width: 100%;
+        }
+        #myDex {
+            display: flex;
+        }
+        #myDex img {
+            float: left;
+        }
        </style>
        <style>
         body {
@@ -130,6 +161,9 @@ body {
           background-color: rgba(0,0,0, 0.97);
           overflow-x: hidden;
           transition: 0.5s;
+        }
+        .overlay-dex {
+          transition: 0.0s;
         }
         
         .overlay-content {
@@ -176,28 +210,60 @@ body {
     
     <div id="myNav" class="overlay">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="top: -20; right: 0;z-index: 10;">&times;</a>
+        <a id="openDex" href="javascript:void(0)" class="" onclick="openDex()" style="top: -20; left: 0;z-index: 10;">DEX</a>
         <div class="overlay-content">
           <a href="#" id="Grass">Grass</a>
           <a href="#" id="Fire">Fire</a>
           <a href="#" id="Water">Water</a>
-          <a href="#" id="">Normal</a>
-          <a href="#" id="">Flying</a>
-          <a href="#" id="">Bug</a>
-          <a href="#" id="">Poison</a>
-          <a href="#" id="">Ground</a>
-          <a href="#" id="">Rock</a>
-          <a href="#" id="">Ice</a>
-          <a href="#" id="">Electric</a>
-          <a href="#" id="">Steel</a>
-          <a href="#" id="">Ghost</a>
-          <a href="#" id="">Dark</a>
-          <a href="#" id="">Psychic</a>
-          <a href="#" id="">Fighting</a>
-          <a href="#" id="">Fairy</a>
-          <a href="#" id="">Dragon</a>
+          <a href="#" id="Normal">Normal</a>
+          <a href="#" id="Flying">Flying</a>
+          <a href="#" id="Bug">Bug</a>
+          <a href="#" id="Ground">Ground</a>
+          <a href="#" id="Rock">Rock</a>
+          <a href="#" id="Ice">Ice</a>
+          <a href="#" id="Electric">Electric</a>
+          <a href="#" id="Steel">Steel</a>
+          <a href="#" id="Poison">Poison</a>
+          <a href="#" id="Ghost">Ghost</a>
+          <a href="#" id="Dark">Dark</a>
+          <a href="#" id="Psychic">Psychic</a>
+          <a href="#" id="Fighting">Fighting</a>
+          <a href="#" id="Fairy">Fairy</a>
+          <a href="#" id="Dragon">Dragon</a>
         </div>
-      </div>
+    </div>
 
+    <div id="myDex" class="overlay overlay-dex">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeDex()" style="top: -20; right: 0;z-index: 10;">&times;</a>
+      <input id="download" value="Backup" type="submit" class="btn" style="top: -20; left: 0;z-index: 10; height: fit-content;" onClick="download();" />
+      <div class="overlay-content">
+      </div>
+  </div>
+  <script language="Javascript" >
+    function download() {
+      let retrievedObject = localStorage.getItem('dexSEEN');
+
+      let dexSEEN = JSON.parse(retrievedObject);
+      console.log(dexSEEN)
+
+      var filename = 'backup-dex';
+      var text =  dexSEEN;
+      
+      var pom = document.createElement('a');
+      pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + 
+      encodeURIComponent(text)); 
+    
+      pom.setAttribute('download', filename);
+    
+      pom.style.display = 'none';
+      document.body.appendChild(pom);
+    
+      pom.click();
+    
+      document.body.removeChild(pom);
+    }
+    
+  </script>
 
        
     
@@ -217,10 +283,12 @@ body {
         <img id ="image" class="grid-child"></img>
         <p id="height" class="grid-child"></p>
     </div>
-    <p id="abilities"></p>
-    <p id="dexentry"></p>
-    <p id="origin"></p>
 
+    <div class="container-center">
+      <p id="abilities"></p>
+      <p id="dexentry"></p>
+      <p id="origin"></p>
+    </div>
     <!-- <script src="serebiiURL.json"></script>
     <script src="paldeaDEX.json"></script> -->
     <script type="module" src="index.js"></script>
@@ -241,6 +309,14 @@ body {
     
     function closeNav() {
       document.getElementById("myNav").style.width = "0%";
+    }
+
+    function openDex() {
+      document.getElementById("myDex").style.width = "100%";
+    }
+    
+    function closeDex() {
+      document.getElementById("myDex").style.width = "0%";
     }
     </script>
 </body>

@@ -2920,40 +2920,61 @@ let paldeaDEX = {
         "bulbaIMG": "https://archives.bulbagarden.net/media/upload/thumb/7/79/Menu_SV_Annihilape.png/250px-Menu_SV_Annihilape.png"
     }
 }
+let dexSEEN = {
+    "Grass": ["Smoliv"],
+	"Flying":["Flamigo"], 
+	"Fighting":["Flamigo"],
+    "Ice":["Arctibax"],
+    "Dragon":["Arctibax"],
+    "Normal":["Grafaiai", "Smoliv"],
+    "Poison":["Grafaiai"],
+}
+// bulba image fix, some pokemon dont have sugimori art
+
+// mark as seen
+// dex to view completion
+// save dex seen
+// prefer basics before evolution
+
+// then increase odds of not seen catchrate by 50%? 
+    // currently it always gives new??? cus of my baby preference it loops until new
+        // make only 1 reroll if baby check fails?
+
+// rarity border like tft
+// take image and compare avg color to pokemon for to find unique pokemon match
+// music eh?
 
 fetch("paldeaDEX.json")
 .then(response => response.json())
 .then(json => {
-
-let pokemon = {
-    "image": "https://serebii.net/scarletviolet/pokemon/978.png",
-    "evolution": {
-        "basic": "greattusk"
-    },
-    "height": "2.2m",
-    "egg_groups": "cannot breed",
-    "catchrate": "30",
-    "eggsteps": 12800,
-    "abilities": "\n\t\t\t\nProtosynthesis: Boosts the Pokémon's most proficient stat in harsh sunlight or if the Pokémon is holding Booster Energy. \n\t\t",
-    "stats": "Base Stats - Total: 570\n115\n131\n131\n53\n53\n87",
-    "scarlet_location": "Area Zero",
-    "violet_location": "Trade from Scarlet",
-    "scarlet_exlusive": true,
-    "violet_exlusive": false,
-    "classification": "Paradox Pokémon",
-    "paradox": true,
-    "dexentry": "\n\t\n\t\tFlavor Text\n\t\n\t\tScarlet\n\t\tSightings of this Pokémon have occurred in recent years. The name Great Tusk was taken from a creature listed in a certain book.\n\t\n\t\tViolet\n\t\tThis creature resembles a mysterious Pokémon that, according to a paranormal magazine, has lived since ancient times.\n\t"
-}
-
-console.log(pokemon)
-// import paldeaDEX from 'paldeaDEX.json' assert {type: 'json'};
-// import serebiiURL from 'paldeaDEX.json' assert {type: 'json'};
+    // default pokemon
+    let pokemon = {
+        "image": "https://serebii.net/scarletviolet/pokemon/978.png",
+        "evolution": {
+            "basic": "greattusk"
+        },
+        "height": "2.2m",
+        "egg_groups": "cannot breed",
+        "catchrate": "30",
+        "eggsteps": 12800,
+        "abilities": "\n\t\t\t\nProtosynthesis: Boosts the Pokémon's most proficient stat in harsh sunlight or if the Pokémon is holding Booster Energy. \n\t\t",
+        "stats": "Base Stats - Total: 570\n115\n131\n131\n53\n53\n87",
+        "scarlet_location": "Area Zero",
+        "violet_location": "Trade from Scarlet",
+        "scarlet_exlusive": true,
+        "violet_exlusive": false,
+        "classification": "Paradox Pokémon",
+        "paradox": true,
+        "dexentry": "\n\t\n\t\tFlavor Text\n\t\n\t\tScarlet\n\t\tSightings of this Pokémon have occurred in recent years. The name Great Tusk was taken from a creature listed in a certain book.\n\t\n\t\tViolet\n\t\tThis creature resembles a mysterious Pokémon that, according to a paranormal magazine, has lived since ancient times.\n\t"
+    }
+    // import paldeaDEX from 'paldeaDEX.json' assert {type: 'json'};
+    // import serebiiURL from 'paldeaDEX.json' assert {type: 'json'};
 
 
     json = JSON.parse(JSON.stringify(json,' ',4).replaceAll('�','é'))
 
     pokemon = Object.values(json)[0]
-
+    const dex = Object.values(json)
 
 
     let typesByName = {}
@@ -2973,7 +2994,46 @@ console.log(pokemon)
             })
         }catch(e){}
     })
+   
+   
 
+    function preferBabyBeforeEvolution(evolution){
+        for(let [stage, name] of Object.entries(evolution)){
+            name = capitalizeFirstLetter(name)
+
+            if(stage=="basic"){
+                try{
+                    if(!dexSEEN[json[name].type[0]].includes(name))
+                        return json[name];
+                }catch(e){
+                    // error because type wasnt in dexSEEN meaning pokemon is new
+                    return json[name]
+                }
+            }
+            if(stage=="stage1"){
+                try{
+                    if(!dexSEEN[json[name].type[0]].includes(name))
+                        return json[name];
+                }catch(e){
+                    return json[name]
+                }
+            }
+            if(stage=="stage2"){
+                try{
+                    if(!dexSEEN[json[name].type[0]].includes(name))
+                        return json[name];
+                }catch(e){
+                    return json[name]
+                }
+            }
+        }
+    }
+    function UniqueArray(array){
+        return [...new Set(array)]
+    }
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
     function yatesShuffle(a,b,c,d){//array,placeholder,placeholder,placeholder
         c=a.length;while(c)b=Math.random()*c--|0,d=a[c],a[c]=a[b],a[b]=d
     }
@@ -2984,126 +3044,88 @@ console.log(pokemon)
         for(let yatespokemon of Object.values(typesByName[type])){
             
             if(catchrate < yatespokemon.catchrate){
-                return yatespokemon // succesful catch
+                console.log('succesful catch: ', yatespokemon.name)
+               // return yatespokemon
+
+                // super broken function
+
+                let babyfirst = preferBabyBeforeEvolution(yatespokemon.evolution);
+                // has to pass catchrate, no free evolutions
+                try{
+                if(Math.round(Math.random() * 1)==1){
+                    return babyfirst
+                }else{
+                    // if(Math.round(Math.random() * 1)==1)
+                    //     yates_pokemon(type) // 50% chance for reroll
+                    // else
+                        return typesByName[type][0] // return random pokemon from type array, but this ignores catch rate? so make something that honors catchrate
+                }
+                }catch(e){return typesByName[type][0]}
+                
+            }else{
+                // does this fix crazy catch loop?
+                return typesByName[type][0]
             }
         }
         return typesByName[type][0] // return yates pick, if catch fails
     }
-    console.log('yates',yates_pokemon('Grass'))
+    //console.log('yates',yates_pokemon('Grass'))
     
 
 
-    document.getElementById('name').innerHTML = pokemon.name
-    document.getElementById('classification').innerHTML = '<b>'+pokemon.classification.replace(' Pokémon','')+'</b> <span id="menu" style="font-size:30px;cursor:pointer;right: 5;top: 0;position: fixed;" onclick="openNav()">&#9776;</span>'
-// violet 127815, scarlet 127818
-// max image height 250
-document.getElementById('image').src = pokemon.image
+    createPage(pokemon)
+    createEventListerners()
 
 
-let height = 160 * 1.7/parseFloat(pokemon.height);
-if(height>600){
-    // if height really small like 0.5m then scale image smaller
-    document.getElementById('image').style.height = 250 * 600/height;
-    height=600;
+function favoritePokemon(){
+    localStorage.setItem('dexSEEN', JSON.stringify(dexSEEN,'',0));
+
+    let retrievedObject = localStorage.getItem('dexSEEN');
+
+    dexSEEN = JSON.parse(retrievedObject);
+
+    // localStorage.removeItem("dexSEEN");
 }
-document.getElementById('trainer').style.height = height;
 
-pokemon.stats = pokemon.stats.replace('Base Stats - Total:','<br>BST')
-pokemon.stats = pokemon.stats.replace('\n','<br>HP&nbsp ')
-pokemon.stats = pokemon.stats.replace('\n','<br>ATK ')
-pokemon.stats = pokemon.stats.replace('\n','<br>DEF ')
-pokemon.stats = pokemon.stats.replace('\n','<br>SPA ')
-pokemon.stats = pokemon.stats.replace('\n','<br>SPD ')
-pokemon.stats = pokemon.stats.replace('\n','<br>SPE ')
+function createEventListerners(){
+    document.querySelectorAll('.overlay-content a').forEach(el => {
+        el.addEventListener("click",function() { 
+            pokemon=yates_pokemon(el.id);
+            createPage(pokemon);  // render new pokemon, and create eventlisteners for new page
+            console.log('event fired', el.id);
 
-let rarity;
-if(pokemon.catchrate <= 130){
-    rarity = 'r130' 
-    if(pokemon.catchrate <= 45){
-        rarity = 'r45' 
-        if(pokemon.catchrate <= 10){
-            rarity = 'r10' 
+            closeNav()
+            
+                // add to dexSEEN
+                for(let type of pokemon.type){
+                    if(!dexSEEN[type]){
+                        dexSEEN[type] = []
+                    }
+                    dexSEEN[type].push(pokemon.name)
+                    dexSEEN[type] = UniqueArray(dexSEEN[type])
+                }
+                
+                console.log(pokemon)
+               // console.log(dexSEEN)
+                createDexCompletion();
+           
+        });
+    })
+
+    document.querySelector('#image').addEventListener("click",function() { 
+        if(document.getElementById('image').src == pokemon.image){
+            document.getElementById('image').src = pokemon.bulbaIMG
+        }else{
+            document.getElementById('image').src = pokemon.image
         }
-    }
-}else{
-    rarity = 'r255' 
-}
-for(let[key,val] of Object.entries(pokemon.evolution)){
-    if(val == pokemon.name.toLowerCase()){
-        document.getElementById('height').innerHTML = '<b>'+key+'</b><b class='+rarity+'> </b><br><br>'
-    }
-}
-
-document.getElementById('height').innerHTML += '<b>'+pokemon.type.toString().replace(',',' ').replace('Unknown','')+'</b><br>'+pokemon.stats//.replaceAll('\n','<br>')
-
-pokemon.dexentry = pokemon.dexentry.replace('Flavor Text','')
-pokemon.dexentry = pokemon.dexentry.replace('\n\t\n\t\tScarlet\n\t\t','')
-document.getElementById('dexentry').innerHTML = pokemon.dexentry.replace('\n\t\n\t\tViolet\n\t\t','<br><br>')
-
-document.getElementById('origin').innerHTML = '<br>'+pokemon.origin
-
-// select ability names /\\n[\w ]+:/g
-// select ability effect /:[^:]+\n/g
-
-// ability parsing
-let text2 = pokemon.abilities.replaceAll('Hidden Ability: ','')
-text2 = text2.replaceAll(": ",'<div class="ability">') // start
-text2 = text2.replaceAll(" \n\t\t",'</div><br>') // end
-text2 = text2.replaceAll(" \n",'</div>') // middle, this order matters cus above also uses \n
-document.getElementById('abilities').innerHTML = text2
-
-let typecolors = {
-    Normal: 'Wheat',
-    Fire: 'Red',
-    Water: 'Blue',
-    Grass: 'Green',
-    Electric: 'Yellow',
-    Ice: 'PaleTurquoise',
-    Fighting: 'Brown',
-    Poison: 'DarkViolet',
-    Ground: 'Orange',
-    Flying: 'LightCyan',
-    Psychic: 'MediumOrchid',
-    Bug: 'Olive',
-    Rock: 'Tan',
-    Ghost: 'DarkSlateBlue',
-    Dark: 'MidnightBlue',
-    Dragon: 'Navy',
-    Steel: 'LightSlateGrey',
-    Fairy: 'LightPink',
-}
-let color2 = getColor2();
-function getColor2() {
-    if(pokemon.type[1] == 'Unknown'){ 
-        return typecolors[pokemon.type[0]] 
-    }else{ 
-        return typecolors[pokemon.type[1]]
-    }
-}
-
-document.body.style.backgroundImage = 'linear-gradient('+typecolors[pokemon.type[0]]+','+color2+')';
-
-document.querySelectorAll('.overlay-content a').forEach(el => {
-    el.addEventListener("click",function() { 
-        pokemon=yates_pokemon(el.textContent);
-        createPage(pokemon); 
-        console.log('event fired', el.textContent);
-
-        closeNav()
     });
-})
-
-document.querySelector('#image').addEventListener("click",function() { 
-    if(document.getElementById('image').src == pokemon.image){
-        document.getElementById('image').src = pokemon.bulbaIMG
-    }else{
-        document.getElementById('image').src = pokemon.image
-    }
-});
-
-});
+    // why do i need to create dex before i click dex button? doesnt render js fast enough?
+    document.getElementById('menu').addEventListener("click",function() {  createDexCompletion(); });
+}
 
 function createPage(pokemon){
+    favoritePokemon() // save dex
+
     document.getElementById('name').innerHTML = pokemon.name
     document.getElementById('classification').innerHTML = '<b>'+pokemon.classification.replace(' Pokémon','')+'</b> <span id="menu" style="font-size:30px;cursor:pointer;right: 5;top: 0;position: fixed;" onclick="openNav()">&#9776;</span>'
     // violet 127815, scarlet 127818
@@ -3128,14 +3150,12 @@ function createPage(pokemon){
     pokemon.stats = pokemon.stats.replace('\n','<br>SPE ')
 
     let rarity;
-    if(pokemon.catchrate <= 130){
-        rarity = 'r130' 
-        if(pokemon.catchrate <= 45){
-            rarity = 'r45' 
-            if(pokemon.catchrate <= 10){
-                rarity = 'r10' 
-            }
-        }
+    if(pokemon.catchrate <= 10){
+        rarity = 'r10' 
+    }else if(pokemon.catchrate <= 45){
+				rarity = 'r45' 
+    }else if(pokemon.catchrate <= 130){
+    		rarity = 'r130' 
     }else{
         rarity = 'r255' 
     }
@@ -3194,5 +3214,30 @@ function createPage(pokemon){
 
     document.body.style.backgroundImage = 'linear-gradient('+typecolors[pokemon.type[0]]+','+color2+')';
 
-
+    //createEventListerners()
 }
+
+function createDexCompletion(){
+    document.querySelector('#myDex .overlay-content').innerHTML = '';
+  
+    let dexAsString = JSON.stringify(dexSEEN)
+    // if seen, show pokemon, otherwise questionmark
+    for(const pkmn of Object.values(json)){
+        let image = dexAsString.includes(pkmn.name) ? pkmn.image : 'mystery.png'
+        document.querySelector('#myDex .overlay-content').innerHTML += '<img style="height:10%;" src="'+image+'">';
+       
+    }
+    // console.log('updating dex', typesByName["Grass"])
+    updateProgressByType()
+}
+function updateProgressByType(){
+    for(const el of document.querySelectorAll('#myNav .overlay-content a')){
+       //try{
+        let type = el.id
+        let progress = dexSEEN[type] ? dexSEEN[type].length : 0
+        el.textContent = type+' ('+progress+'/'+typesByName[type].length+')'
+       // }catch(e){}
+    }
+}
+
+});
