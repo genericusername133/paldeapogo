@@ -2921,15 +2921,19 @@ let paldeaDEX = {
     }
 }
 let dexSEEN = {
-    "Grass": ["Smoliv", "Dolliv"],
-	"Flying":["Flamigo", "Wattrel"], 
+    "Grass": ["Smoliv", "Dolliv", "Arboliva", "Sprigatito"],
+	"Flying":["Flamigo", "Wattrel", "Kilowattrel"], 
 	"Fighting":["Flamigo"],
-    "Ice":["Arctibax", "Frigibax", "Iron Bundle"],
-    "Dragon":["Arctibax", "Frigibax", "Miraidon"],
-    "Normal":["Grafaiai", "Smoliv", "Dolliv"],
-    "Poison":["Grafaiai"],
-    "Electric":["Wattrel", "Miraidon"],
+    "Ice":["Arctibax", "Frigibax", "Iron Bundle", "Baxcalibur"],
+    "Dragon":["Arctibax", "Frigibax", "Miraidon", "Baxcalibur"],
+    "Normal":["Grafaiai", "Smoliv", "Dolliv", "Shroodle", "Arboliva"],
+    "Poison":["Grafaiai", "Shroodle", "Iron Moth"],
+    "Electric":["Wattrel", "Miraidon", "Kilowattrel"],
     "Steel":["Iron Bundle"],
+    "Water":["Wugtrio"],
+    "Fire":["Iron Moth", "Skeledirge"],
+    "Ghost":["Skeledirge"],
+    "Water":["Finizen"],
 }
 // bulba image fix, some pokemon dont have sugimori art
 
