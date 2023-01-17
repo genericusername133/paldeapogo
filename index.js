@@ -2922,21 +2922,22 @@ let paldeaDEX = {
 }
 let dexSEEN = {
     "Grass": ["Smoliv", "Dolliv", "Arboliva", "Sprigatito"],
-	"Flying":["Flamigo", "Wattrel", "Kilowattrel", "Bombirdier"], 
+	"Flying":["Flamigo", "Wattrel", "Kilowattrel", "Bombirdier", "Iron Jugulis"], 
 	"Fighting":["Flamigo"],
     "Ice":["Arctibax", "Frigibax", "Iron Bundle", "Baxcalibur"],
     "Dragon":["Arctibax", "Frigibax", "Miraidon", "Baxcalibur"],
     "Normal":["Grafaiai", "Smoliv", "Dolliv", "Shroodle", "Arboliva", "Lechonk"],
-    "Poison":["Grafaiai", "Shroodle", "Iron Moth"],
+    "Poison":["Grafaiai", "Shroodle", "Iron Moth", "Varoom", "Clodsire"],
     "Electric":["Wattrel", "Miraidon", "Kilowattrel", "Pawmi"],
-    "Steel":["Iron Bundle"],
-    "Water":["Wugtrio", "Quaxwell", "Veluza"],
+    "Steel":["Iron Bundle", "Varoom", "Iron Jugulis"],
+    "Water":["Wugtrio", "Quaxwell", "Veluza", "Dondozo"],
     "Fire":["Iron Moth", "Skeledirge", "Fuecoco"],
     "Ghost":["Skeledirge"],
     "Water":["Finizen"],
     "Fairy":["Fidough"],
     "Psychic":["Veluza"],
     "Dark":["Bombirdier"],
+    "Ground":["Clodsire"]
 }
 // bulba image fix, some pokemon dont have sugimori art
 
@@ -3123,7 +3124,7 @@ function createEventListerners(){
 
     document.querySelector('#image').addEventListener("click",function() { 
         if(document.getElementById('image').src == pokemon.image){
-            document.getElementById('image').src = pokemon.bulbaIMG
+            document.getElementById('image').src = "https://serebii.net/pokemon/art/"+pokemon.image.match(/\d+/)[0]+".png"
         }else{
             document.getElementById('image').src = pokemon.image
         }
