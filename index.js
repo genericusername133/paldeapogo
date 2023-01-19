@@ -3124,7 +3124,7 @@ function createEventListerners(){
 
     document.querySelector('#image').addEventListener("click",function() { 
         if(document.getElementById('image').src == pokemon.image){
-            document.getElementById('image').src = "https://img.pokemondb.net/artwork/large/"+pokemon.name.toLowerCase()+".jpg"
+            document.getElementById('image').src = "https://img.pokemondb.net/artwork/large/"+pokemon.name.toLowerCase().replaceAll(' ', '-')+".jpg"
         }else{
             document.getElementById('image').src = pokemon.image
         }
