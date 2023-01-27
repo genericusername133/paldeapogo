@@ -1,4 +1,33 @@
 let paldeaDEX = {
+    "Chien-Pao": {
+        "name": "Chien-Pao",
+        "image": "https://www.serebii.net/scarletviolet/pokemon/new/1002.png",
+        "evolution": {
+            "basic": "chien-pao",
+        },
+        "height": "1.4m",
+        "egg_groups": [
+            "Field",
+            "Grass"
+        ],
+        "catchrate": "15",
+        "eggsteps": 5120,
+        "abilities": "\n\t\t\t\nOvergrow: When HP is below 1/3rd its maximum, power of Grass-type moves is increased by 50%. \nHidden Ability: Protean: Before the Pok�mon uses a move, it becomes a pure Pok�mon of that type. This only works once per battle. \n\t\t",
+        "stats": "Base Stats - Total: 310\n40\n61\n54\n45\n45\n65",
+        "scarlet_location": "Starter Pok�mon in Cabo Poco",
+        "violet_location": "Starter Pok�mon in Cabo Poco",
+        "scarlet_exlusive": false,
+        "violet_exlusive": false,
+        "classification": "Grass Cat Pok�mon",
+        "paradox": false,
+        "dexentry": "\n\t\n\t\tFlavor Text\n\t\n\t\tScarlet\n\t\tIts fluffy fur is similar in composition to plants. This Pok�mon frequently washes its face to keep it from drying out.\n\t\n\t\tViolet\n\t\tThe sweet scent its body gives off mesmerizes those around it. The scent grows stronger when this Pok�mon is in the sun.\n\t",
+        "origin": "Sprigatito appears to be based on a long-haired kitten.\n",
+        "type": [
+            "Ice",
+            "Dark"
+        ],
+        "bulbaIMG": "https://archives.bulbagarden.net/media/upload/thumb/e/eb/Sprigatito.png/250px-Sprigatito.png"
+    },
     "Sprigatito": {
         "name": "Sprigatito",
         "image": "https://serebii.net/scarletviolet/pokemon/906.png",
@@ -2957,21 +2986,23 @@ let paldeaDEX = {
 let dexSEEN = {
     "Grass": ["Smoliv", "Dolliv", "Arboliva", "Sprigatito"],
     "Flying": ["Flamigo", "Wattrel", "Kilowattrel", "Bombirdier", "Iron Jugulis"],
-    "Fighting": ["Flamigo", "Pawmot"],
-    "Ice": ["Arctibax", "Frigibax", "Iron Bundle", "Baxcalibur", "Cetoddle", "Cetitan"],
-    "Dragon": ["Arctibax", "Frigibax", "Miraidon", "Baxcalibur"],
+    "Fighting": ["Flamigo", "Pawmot", "Great Tusk", "Slither Wing"],
+    "Ice": ["Arctibax", "Frigibax", "Iron Bundle", "Baxcalibur", "Cetoddle", "Cetitan", "Chien-Pao"],
+    "Dragon": ["Arctibax", "Frigibax", "Miraidon", "Baxcalibur", "Tatsugiri"],
     "Normal": ["Grafaiai", "Smoliv", "Dolliv", "Shroodle", "Arboliva", "Lechonk"],
     "Poison": ["Grafaiai", "Shroodle", "Iron Moth", "Varoom", "Clodsire"],
     "Electric": ["Wattrel", "Miraidon", "Kilowattrel", "Pawmi", "Pawmot"],
     "Steel": ["Iron Bundle", "Varoom", "Iron Jugulis", "Tinkatuff", "Tinkaton", "Kingambit"],
-    "Water": ["Wugtrio", "Quaxwell", "Veluza", "Dondozo"],
+    "Water": ["Wugtrio", "Quaxwell", "Veluza", "Dondozo", "Tatsugiri"],
     "Fire": ["Iron Moth", "Skeledirge", "Fuecoco", "Crocalor"],
     "Ghost": ["Skeledirge"],
     "Water": ["Finizen"],
     "Fairy": ["Fidough", "Tinkatuff", "Tinkaton"],
     "Psychic": ["Veluza"],
-    "Dark": ["Bombirdier", "Maschiff", "Kingambit"],
-    "Ground": ["Clodsire"],
+    "Dark": ["Bombirdier", "Maschiff", "Kingambit", "Chien-Pao"],
+    "Ground": ["Clodsire", "Great Tusk"],
+    "Rock": ["Naclstack", "Klawf"],
+    "Bug": ["Slither Wing"],
 }
 // bulba image fix, some pokemon dont have sugimori art
 
