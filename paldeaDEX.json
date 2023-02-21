@@ -1,4 +1,4 @@
-{
+﻿{
     "Sprigatito": {
         "name": "Sprigatito",
         "image": "https://serebii.net/scarletviolet/pokemon/906.png",
@@ -2468,6 +2468,10 @@
         "evolution": {
             "basic": "ting-lu"
         },
+"type": [
+            "Dark",
+            "Ground"
+        ],
         "height": "2.7m",
         "egg_groups": [
             "cannot breed"
@@ -2490,6 +2494,10 @@
         "evolution": {
             "basic": "chien-pao"
         },
+"type": [
+            "Dark",
+            "Ice"
+        ],
         "height": "1.9m",
         "egg_groups": [
             "cannot breed"
@@ -2511,7 +2519,10 @@
         "image": "https://serebii.net/scarletviolet/pokemon/996.png",
         "evolution": {
             "basic": "wo-chien"
-        },
+        },"type": [
+            "Dark",
+            "Grass"
+        ],
         "height": "1.5m",
         "egg_groups": [
             "cannot breed"
@@ -2533,7 +2544,10 @@
         "image": "https://serebii.net/scarletviolet/pokemon/997.png",
         "evolution": {
             "basic": "chi-yu"
-        },
+        },"type": [
+            "Dark",
+            "Fire"
+        ],
         "height": "0.4m",
         "egg_groups": [
             "cannot breed"
