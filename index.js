@@ -2984,24 +2984,24 @@ let paldeaDEX = {
     }
 }
 let dexSEEN = {
-    "Grass": ["Smoliv", "Dolliv", "Arboliva", "Sprigatito", "Meowscarada", "Bramblin", "Toedscruel", "Brambleghast", "Floragato", "Capsakid", "Brute Bonnet", "Scovillain", "Wo-Chien", "Toadscool"],
+    "Grass": ["Smoliv", "Dolliv", "Arboliva", "Sprigatito", "Meowscarada", "Bramblin", "Toedscruel", "Brambleghast", "Floragato", "Capsakid", "Brute Bonnet", "Scovillain", "Wo-Chien", "Toedscool"],
     "Flying": ["Flamigo", "Wattrel", "Kilowattrel", "Bombirdier", "Iron Jugulis", "Squawkabilly"],
     "Fighting": ["Flamigo", "Pawmot", "Great Tusk", "Slither Wing", "Pawmo", "Iron Hands", "Koraidon", "Quaquaval", "Iron Valiant", "Revavroom", "Annihilape"],
     "Ice": ["Arctibax", "Frigibax", "Iron Bundle", "Baxcalibur", "Cetoddle", "Cetitan", "Chien-Pao"],
     "Dragon": ["Arctibax", "Frigibax", "Miraidon", "Baxcalibur", "Tatsugiri", "Koraidon", "Roaring Moon", "Cyclizar"],
     "Normal": ["Grafaiai", "Smoliv", "Dolliv", "Shroodle", "Arboliva", "Lechonk", "Farigiraf", "Oinkologne", "Squawkabilly", "Tandemaus", "Cyclizar"],
     "Poison": ["Grafaiai", "Shroodle", "Iron Moth", "Varoom", "Clodsire", "Revavroom", "Glimmet", "Glimmora"],
-    "Electric": ["Wattrel", "Miraidon", "Kilowattrel", "Pawmi", "Pawmot", "Pawmo", "Iron Hands", "Sandy Shocks", "Iron Thorn"],
-    "Steel": ["Varoom", "Tinkatuff", "Tinkaton", "Kingambit", "Orthworm", "Revavroom", "Tinkatink"],
+    "Electric": ["Wattrel", "Miraidon", "Kilowattrel", "Pawmi", "Pawmot", "Pawmo", "Iron Hands", "Sandy Shocks", "Iron Thorns"],
+    "Steel": ["Varoom", "Tinkatuff", "Tinkaton", "Kingambit", "Orthworm", "Revavroom", "Tinkatink", "Gholdengo"],
     "Water": ["Wugtrio", "Quaxwell", "Veluza", "Finizen", "Dondozo", "Tatsugiri", "Quaxly", "Quaquaval", "Iron Bundle", "Wiglett"],
     "Fire": ["Iron Moth", "Skeledirge", "Fuecoco", "Crocalor", "Ceruledge", "Chi-Yu", "Scovillain", "Armarouge"],
-    "Ghost": ["Skeledirge", "Ceruledge", "Bramblin", "Brambleghast", "Gimmighoul", "Houndstone", "Greavard", "Annihilape", "Flutter Mane"],
+    "Ghost": ["Skeledirge", "Ceruledge", "Bramblin", "Brambleghast", "Gimmighoul", "Houndstone", "Greavard", "Annihilape", "Flutter Mane", "Gholdengo"],
     "Fairy": ["Fidough", "Tinkatuff", "Tinkaton", "Iron Valiant", "Tinkatink", "Dachsbun", "Flutter Mane", "Scream Tail"],
     "Psychic": ["Veluza", "Farigiraf", "Flittle", "Scream Tail", "Armarouge", "Rabsca"],
     "Dark": ["Bombirdier", "Maschiff", "Kingambit", "Chien-Pao", "Mabosstiff", "Meowscarada", "Roaring Moon", "Chi-Yu", "Brute Bonnet", "Wo-Chien", "Ting-Lu", "Iron Jugulis"],
-    "Ground": ["Clodsire", "Great Tusk", "Toedscruel", "Sandy Shocks", "Ting-Lu", "Toadscool"],
-    "Rock": ["Naclstack", "Klawf", "Garganacl", "Glimmet", "Iron Thorn", "Glimmora"],
-    "Bug": ["Slither Wing", "Spidops", "Tarountula", "Nymble", "Rabsca"],
+    "Ground": ["Clodsire", "Great Tusk", "Toedscruel", "Sandy Shocks", "Ting-Lu", "Toedscool"],
+    "Rock": ["Naclstack", "Klawf", "Garganacl", "Glimmet", "Iron Thorns", "Glimmora", "Nacl"],
+    "Bug": ["Slither Wing", "Spidops", "Tarountula", "Nymble", "Rabsca", "Rellor"],
 }
 // bulba image fix, some pokemon dont have sugimori art
 
